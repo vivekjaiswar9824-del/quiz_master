@@ -64,6 +64,10 @@ python manage.py migrate
 # 5️⃣ Run the Django server
 python manage.py runserver
 
+# create superuser
+username : admin
+password : 1234
+
 
 API will be accessible at:
 
