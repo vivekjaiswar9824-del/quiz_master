@@ -13,23 +13,23 @@ print("------------------------------------------------")
 # Step 2: Add a question to the quiz (Quiz ID = 1)
 question_url = "http://127.0.0.1:8000/api/quizzes/1/questions/"
 question_data = {
-    "text": "What is 2 + 2?",
+    "text": "1. What does the Acronym REST Stand for?",
     "question_type": "single",
     "options": [
-        {"text": "3", "is_correct": False},
-        {"text": "4", "is_correct": True}
+        {"text": "Representational State protocol", "is_correct": False},
+        {"text": "Representational State Transfer", "is_correct": True}
     ]
 }
 
 question_response = requests.post(question_url, json=question_data, headers=headers)
-print("🧩 Add Question Response:")
+print(" Add Question Response:")
 print(question_response.json())
 print("------------------------------------------------")
 
 # Step 3: Fetch questions for taking (no correct answers)
 take_url = "http://127.0.0.1:8000/api/quizzes/1/questions_for_take/"
 take_response = requests.get(take_url)
-print("📝 Questions For Taking:")
+print(" Questions For Taking:")
 print(take_response.json())
 print("------------------------------------------------")
 
@@ -41,7 +41,7 @@ submit_data = {
     ]
 }
 submit_response = requests.post(submit_url, json=submit_data, headers=headers)
-print("✅ Submit Answers Response:")
+print(" Submit Answers Response:")
 print(submit_response.json())
 print("------------------------------------------------")
 
