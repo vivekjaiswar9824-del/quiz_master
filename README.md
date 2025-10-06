@@ -5,9 +5,9 @@ Users can fetch quiz questions (without correct answers), submit answers, and ge
 
 ---
 
-##  Features
+#  Features
 
-###  Core Functionality
+#  Core Functionality
 - **Quiz Management**
   - Create a quiz with a title.
   - Add questions to a quiz (single choice, multiple choice, or text type).
@@ -19,7 +19,7 @@ Users can fetch quiz questions (without correct answers), submit answers, and ge
     { "score": 3, "total": 5 }
     ```
 
-### ✨ Bonus Features
+# Bonus Features
 - Validation:
   - Single choice: exactly one correct option.
   - Multiple choice: one or more correct options.
@@ -29,7 +29,7 @@ Users can fetch quiz questions (without correct answers), submit answers, and ge
 
 ---
 
-## 🏗️ Tech Stack & Versions
+# Tech Stack & Versions
 
 - **Backend:** Django 5.2+  
 - **API Framework:** Django REST Framework 3.20+  
@@ -40,9 +40,9 @@ Users can fetch quiz questions (without correct answers), submit answers, and ge
 
 ---
 
-## ⚙️ Installation & Setup
+#  Installation & Setup
 
-### 1️⃣ Clone the repository
+# 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/your-username/online-quiz-api.git
 cd online-quiz-api
