@@ -83,47 +83,76 @@ POST	        /api/quizzes/<quiz_id>/submit/	                Submit answers & get
 
 Python Testing Script (All-in-One)
 
-Create a file test_api.py and paste the following:
+###  Create a file test_api.py and paste the following:
 
 import requests
 
+# Step 1: Create a new quiz
+url = "http://127.0.0.1:8000/api/quizzes/"
+data = {"title": "Sample Quiz"}
 headers = {"Content-Type": "application/json"}
 
-# Step 1: Create Quiz
-quiz = requests.post(
-    "http://127.0.0.1:8000/api/quizzes/",
-    json={"title":"Sample Quiz"},
-    headers=headers
-)
-print("Create Quiz Response:", quiz.json())
+response = requests.post(url, json=data, headers=headers)
+print("📘 Create Quiz Response:")
+print(response.json())
+print("------------------------------------------------")
 
-# Step 2: Add First Question
-question1 = requests.post(
-    "http://127.0.0.1:8000/api/quizzes/1/questions/",
-    json={
-        "text":"What is 2+2?",
-        "question_type":"single",
-        "options":[{"text":"3","is_correct":False},{"text":"4","is_correct":True}]
-    },
-    headers=headers
-)
-print("First Question Response:", question1.json())
+# Step 2: Add a question to the quiz (Quiz ID = 1)
+question_url = "http://127.0.0.1:8000/api/quizzes/1/questions/"
+question_data = {
+    "text": "1. What does the Acronym REST Stand for?",
+    "question_type": "single",
+    "options": [
+        {"text": "Representational State protocol", "is_correct": False},
+        {"text": "Representational State Transfer", "is_correct": True}
+    ]
+}
 
-# Step 3: Add Second Question
-question2 = requests.post(
+question_response = requests.post(question_url, json=question_data, headers=headers)
+print(" Add Question Response:")
+print(question_response.json())
+print("------------------------------------------------")
+
+# Step 3: Fetch questions for taking (no correct answers)
+take_url = "http://127.0.0.1:8000/api/quizzes/1/questions_for_take/"
+take_response = requests.get(take_url)
+print(" Questions For Taking:")
+print(take_response.json())
+print("------------------------------------------------")
+
+# Step 4: Submit answers
+submit_url = "http://127.0.0.1:8000/api/quizzes/1/submit/"
+submit_data = {
+    "answers": [
+        {"question_id": 1, "selected_option_ids": [2]}  # Assuming option 2 is correct
+    ]
+}
+submit_response = requests.post(submit_url, json=submit_data, headers=headers)
+print(" Submit Answers Response:")
+print(submit_response.json())
+print("------------------------------------------------")
+
+
+# Step 2b: Add another question to the same quiz (Quiz ID = 1)
+question_data_2 = {
+    "text": "give me the api full form",
+    "question_type": "single",
+    "options": [
+        {"text": "application interface perogramming", "is_correct": False},
+        {"text": "application programming interface", "is_correct": True},
+        {"text": "app program input", "is_correct": False}
+    ]
+}
+
+question_response_2 = requests.post(
     "http://127.0.0.1:8000/api/quizzes/1/questions/",
-    json={
-        "text":"Which planet is known as the Red Planet?",
-        "question_type":"single",
-        "options":[
-            {"text":"Earth","is_correct":False},
-            {"text":"Mars","is_correct":True},
-            {"text":"Jupiter","is_correct":False}
-        ]
-    },
+    json=question_data_2,
     headers=headers
 )
-print("Second Question Response:", question2.json())
+
+print("🧩 Add Second Question Response:")
+print(question_response_2.json())
+print("------------------------------------------------")
 
 # Step 4: Fetch Questions for Taking
 questions = requests.get("http://127.0.0.1:8000/api/quizzes/1/questions_for_take/")
